@@ -26,70 +26,70 @@
 
 ;;; Commentary:
 
-;; My own personal extensions to `dired-rainbow'.  It's possible I'll try and
-;; add some of them upstream at some point.
+;; This Emacs package adds customizable highlighting to `dired' listings.  It
+;; works well alongside dired-hacks, and specifically dired-rainbow.
 
 ;;; Code:
 
-(defface dired-rainbow-inodes '((t (:inherit shadow)))
+(defface dired-rainbow-listing-inodes '((t (:inherit shadow)))
   "Face for Dired links."
   :group 'dired-rainbow-listing)
 
-(defface dired-rainbow-user '((t (:inherit default)))
+(defface dired-rainbow-listing-user '((t (:inherit default)))
   "Face for Dired user."
   :group 'dired-rainbow-listing)
 
-(defface dired-rainbow-group
+(defface dired-rainbow-listing-group
   '((((background dark)) (:inherit default :foreground "#999"))
     (t (:inherit default :foreground "#777")))
   "Face for Dired group."
   :group 'dired-rainbow-listing)
 
-(defface dired-rainbow-size '((t (:inherit default)))
+(defface dired-rainbow-listing-size '((t (:inherit default)))
   "Face for Dired file size."
   :group 'dired-rainbow-listing)
 
-(defface dired-rainbow-datetime
+(defface dired-rainbow-listing-datetime
   '((((background dark)) (:inherit default :foreground "#999"))
     (t (:inherit default :foreground "#777")))
   "Face for Dired timestamp."
   :group 'dired-rainbow-listing)
 
-(defface dired-rainbow-file-extension '((t (:inherit shadow)))
+(defface dired-rainbow-file-listing-extension '((t (:inherit shadow)))
   "Face for Dired file extensions."
   :group 'dired-rainbow-listing)
 
-(defface dired-rainbow-file-decoration '((t (:inherit font-lock-comment-face)))
+(defface dired-rainbow-file-listing-decoration '((t (:inherit font-lock-comment-face)))
   "Face for file decoration."
   :group 'dired-rainbow-listing)
 
-(defface dired-rainbow-dash '((t (:inherit shadow)))
+(defface dired-rainbow-listing-dash '((t (:inherit shadow)))
   "Face for file decoration."
   :group 'dired-rainbow-listing)
 
-(defface dired-rainbow-permissions-r
+(defface dired-rainbow-listing-permissions-r
   '((((background dark)) (:inherit default :foreground "#999"))
     (t (:inherit default :foreground "#777")))
   "Face for the r in Dired permissions"
   :group 'dired-rainbow-listing)
 
-(defface dired-rainbow-permissions-w
+(defface dired-rainbow-listing-permissions-w
   '((((background dark)) (:inherit default :foreground "#AAA"))
     (t (:inherit default :foreground "#666")))
   "Face for the w in Dired permissions"
   :group 'dired-rainbow-listing)
 
-(defface dired-rainbow-permissions-x
+(defface dired-rainbow-listing-permissions-x
   '((((background dark)) (:inherit default :foreground "#BBB"))
     (t (:inherit default :foreground "#555")))
   "Face for the x in Dired permissions"
   :group 'dired-rainbow-listing)
 
-(defface dired-rainbow-filetype-directory '((t (:inherit font-lock-function-name-face)))
+(defface dired-rainbow-listing-filetype-directory '((t (:inherit font-lock-function-name-face)))
   "Face for file decoration."
   :group 'dired-rainbow-listing)
 
-(defface dired-rainbow-filetype-link '((t (:inherit font-lock-string-face)))
+(defface dired-rainbow-listing-filetype-link '((t (:inherit font-lock-string-face)))
   "Face for file decoration."
   :group 'dired-rainbow-listing)
 
@@ -135,45 +135,48 @@ Stolen from `dired-hacks'.")
        dired-rainbow-listing-size-regexp "\\)")
      (1 'font-lock-comment-face)
      (2 'default))
-    ("^ +\\(-\\)" 1 'dired-rainbow-dash)
-    ("^ +\\(d\\)" 1 'dired-rainbow-filetype-directory)
-    ("^ +\\(l\\)" 1 'dired-rainbow-filetype-link)
-    ("^ +.\\(-\\)" 1 'dired-rainbow-dash)
-    ("^ +..\\(-\\)" 1 'dired-rainbow-dash)
-    ("^ +...\\(-\\)" 1 'dired-rainbow-dash)
-    ("^ +....\\(-\\)" 1 'dired-rainbow-dash)
-    ("^ +.....\\(-\\)" 1 'dired-rainbow-dash)
-    ("^ +......\\(-\\)" 1 'dired-rainbow-dash)
-    ("^ +.......\\(-\\)" 1 'dired-rainbow-dash)
-    ("^ +........\\(-\\)" 1 'dired-rainbow-dash)
-    ("^ +.........\\(-\\)" 1 'dired-rainbow-dash)
-    ("^ +.\\(r\\)" 1 'dired-rainbow-permissions-r)
-    ("^ +....\\(r\\)" 1 'dired-rainbow-permissions-r)
-    ("^ +.......\\(r\\)" 1 'dired-rainbow-permissions-r)
-    ("^ +..\\(w\\)" 1 'dired-rainbow-permissions-w)
-    ("^ +.....\\(w\\)" 1 'dired-rainbow-permissions-w)
-    ("^ +........\\(w\\)" 1 'dired-rainbow-permissions-w)
-    ("^ +...\\(x\\)" 1 'dired-rainbow-permissions-x)
-    ("^ +......\\(x\\)" 1 'dired-rainbow-permissions-x)
-    ("^ +.........\\(x\\)" 1 'dired-rainbow-permissions-x)
+    ("^ +\\(-\\)" 1 'dired-rainbow-listing-dash)
+    ("^ +\\(d\\)" 1 'dired-rainbow-listing-filetype-directory)
+    ("^ +\\(l\\)" 1 'dired-rainbow-listing-filetype-link)
+    ("^ +.\\(-\\)" 1 'dired-rainbow-listing-dash)
+    ("^ +..\\(-\\)" 1 'dired-rainbow-listing-dash)
+    ("^ +...\\(-\\)" 1 'dired-rainbow-listing-dash)
+    ("^ +....\\(-\\)" 1 'dired-rainbow-listing-dash)
+    ("^ +.....\\(-\\)" 1 'dired-rainbow-listing-dash)
+    ("^ +......\\(-\\)" 1 'dired-rainbow-listing-dash)
+    ("^ +.......\\(-\\)" 1 'dired-rainbow-listing-dash)
+    ("^ +........\\(-\\)" 1 'dired-rainbow-listing-dash)
+    ("^ +.........\\(-\\)" 1 'dired-rainbow-listing-dash)
+    ("^ +.\\(r\\)" 1 'dired-rainbow-listing-permissions-r)
+    ("^ +....\\(r\\)" 1 'dired-rainbow-listing-permissions-r)
+    ("^ +.......\\(r\\)" 1 'dired-rainbow-listing-permissions-r)
+    ("^ +..\\(w\\)" 1 'dired-rainbow-listing-permissions-w)
+    ("^ +.....\\(w\\)" 1 'dired-rainbow-listing-permissions-w)
+    ("^ +........\\(w\\)" 1 'dired-rainbow-listing-permissions-w)
+    ("^ +...\\(x\\)" 1 'dired-rainbow-listing-permissions-x)
+    ("^ +......\\(x\\)" 1 'dired-rainbow-listing-permissions-x)
+    ("^ +.........\\(x\\)" 1 'dired-rainbow-listing-permissions-x)
     (,dired-rainbow-listing-details-regexp
-     (2 'dired-rainbow-inodes)
-     (3 'dired-rainbow-user)
-     (4 'dired-rainbow-group)
-     (5 'dired-rainbow-size)
-     (6 'dired-rainbow-datetime))
-    ("\\.[^. /:*]+$" 0 'dired-rainbow-file-extension t)
-    ("\\([*/]\\| -> .*\\)" 1 'dired-rainbow-file-decoration t)))
+     (2 'dired-rainbow-listing-inodes)
+     (3 'dired-rainbow-listing-user)
+     (4 'dired-rainbow-listing-group)
+     (5 'dired-rainbow-listing-size)
+     (6 'dired-rainbow-listing-datetime))
+    ("\\.[^. /:*]+$" 0 'dired-rainbow-file-listing-extension t)
+    ("\\([*/]\\| -> .*\\)" 1 'dired-rainbow-file-listing-decoration t)))
 
 ;;;###autoload
 (define-minor-mode dired-rainbow-listing-mode
   "Toggle highlighting of file listing details in Dired."
   :group 'dired-rainbow
   :lighter nil
-  (if dired-rainbow-listing-mode
-      (font-lock-add-keywords nil dired-rainbow-listing-keywords 'end)
-    (font-lock-remove-keywords nil dired-rainbow-listing-keywords))
-  (font-lock-ensure))
+  (setq font-lock-defaults
+        (if dired-rainbow-listing-mode
+            '((dired-font-lock-keywords
+               dired-rainbow-listing-keywords)
+              t nil nil beginning-of-line)
+          '(dired-font-lock-keywords t nil nil beginning-of-line)))
+  (font-lock-refresh-defaults))
 
 (provide 'dired-rainbow-listing)
 
