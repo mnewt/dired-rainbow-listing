@@ -1,0 +1,32 @@
+#+TITLE: dired-rainbow-listing
+
+This Emacs package adds customizable highlighting to =dired= listings. It works well alongside [[https://github.com/Fuco1/dired-hacks][dired-hacks]], 
+and specifically [[https://github.com/Fuco1/dired-hacks#dired-rainbow][dired-rainbow]].
+
+* Screenshot
+[[file:screenshot.png]]
+Notice the (somtimes subtile) coloring of the file attributes, user, group, date, etc. Also notice that file extensions are left un-highlighted to draw attention to the main part of the file name. I think it makes it easier and more pleasant to read and scan through.
+
+* Install
+** Manually
+  Install it by cloning the repository
+  #+begin_src sh
+  git clone https://github.com/mnewt/dired-rainbow-listing ~/.emacs.d/lisp/
+  #+end_src
+  Add it to the =load-path=
+  #+begin_src emacs-lisp
+  (add-to-list 'load-path "~/.emacs.d/lisp/dired-rainbow-listing")
+  (require 'dired-rainbow-listing)
+  (add-hook 'dired-mode-hook #'dired-rainbow-listing-mode)
+  #+end_src
+
+** Using straight.el
+   #+begin_src emacs-lisp
+   (use-package dired-rainbow-listing
+     :straight (:type git :host github :repo "mnewt/dired-rainbow-listing")
+     :hook
+     (dired-mode . dired-rainbow-listing-mode))
+   #+end_src
+
+* Prior Art
+  This package was created to compliment [[https://github.com/Fuco1/dired-hacks][dired-hacks]]. Much of its functionality is similar to [[https://github.com/purcell/diredfl][diredfl]]. I created it as a replacement for =diredfl= that is compatible with =dired-rainbow=. And since I was designing it, I made it a little simpler and picked a default color scheme that I like better.
